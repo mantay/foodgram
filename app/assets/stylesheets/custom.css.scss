@@ -1,0 +1,59 @@
+/* THEME FIXS */
+.navbar-fixed-top {
+  position: relative;
+}
+.margin-top-fix {
+  margin-top: 15px;
+}
+/* END THEME FIXS */
+
+/* ADDITIONAL OPTIONS */
+.center {
+  text-align: center;
+}
+.debug_dump {
+  clear: both;
+  margin-top: 45px;
+}
+.signup-now {
+  margin: 30px 25px 0 0;
+}
+.alert-notice {
+  background-color: #dff0d8;
+  border-color: #dff0d8;
+  color: #468847;
+}
+.alert-alert {
+  background-color: #f2dede;
+  border-color: #eed3d7;
+  color: #b94a48;
+}
+/* END ADDITIONAL OPTIONS */
+
+/* FOOTER */
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #999;
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-right: 15px;
+    }
+  }
+}
+/* END FOOTER */
+
+/* ERROR REGISTER */
+.reg-errors-list {
+  list-style: none;
+  text-align: left;
+  color: red;
+}
+/* END ERROR REGISTER */
