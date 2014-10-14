@@ -13,6 +13,7 @@ end
 gem 'sass-rails', '~> 4.0.3'
 gem 'twitter-bootswatch-rails'
 gem 'twitter-bootswatch-rails-helpers'
+gem 'bootstrap-will_paginate'
 # To use Less
 gem 'therubyracer'
 # Use Uglifier as compressor for JavaScript assets
@@ -30,6 +31,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
+gem 'omniauth-instagram'
+
+gem 'faker'
 
 group :production do 
   gem 'pg'
@@ -39,6 +47,7 @@ end
 group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'factory_girl_rails'
 end
 
 group :development do 

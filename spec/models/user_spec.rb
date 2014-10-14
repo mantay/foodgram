@@ -10,6 +10,7 @@ describe User do
   it { should respond_to(:email) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:sign_in_count) }
 
   describe "when name is too long" do
     before { @user.username = "a" * 51 }

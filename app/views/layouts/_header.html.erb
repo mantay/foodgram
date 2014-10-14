@@ -4,35 +4,35 @@
       <nav>
         <ul class="nav navbar-nav pull-right">
           <li>
-            <%= link_to "Home", root_path %>
+            <%= link_to "Главная", root_path %>
           </li>
           <li>
-            <%= link_to "Help", '#' %>
+            <%= link_to "Помощь", '#' %>
           </li>
           <% if user_signed_in? %>
             <li>
-              <%= link_to 'Users', users_path %>
+              <%= link_to 'Пользователи', users_path %>
             </li>
             <li class="fat-menu dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
+                <%= current_user.username %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li>
-                  <%= link_to "Profile", current_user %>
+                  <%= link_to "Профиль", current_user %>
                 </li>
                 <li>
-                  <%= link_to "Setting", edit_user_registration_path %>
+                  <%= link_to "Настройки", edit_user_registration_path %>
                 </li>
                 <li class="divider"></li>
                 <li>
-                    <%= link_to "Sign out", destroy_user_session_path, method: "delete" %>
+                    <%= link_to "Выход", destroy_user_session_path, method: "delete" %>
                 </li>
               </ul>
             </li>
           <% else %>  
             <li>
-              <%= link_to "Sign in", user_session_path %>
+              <%= link_to "Войти", user_session_path %>
             </li>
           <% end %>
         </ul>

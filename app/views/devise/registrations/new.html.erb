@@ -1,6 +1,7 @@
-<% provide(:title, 'Sign up') %>
+<% provide(:title, "Регистрация") %>
+
 <div class="row center">
-  <h1>Sign up</h1>
+  <h1>Регистрация</h1>
 
   <div class="col-md-6 col-md-offset-3">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :class => "form-horizontal margin-top-fix" }) do |f| %>
@@ -12,7 +13,7 @@
       <fieldset>
 
         <div class="form-group">
-            <%= f.label :username, class: "col-md-2 control-label" %>
+            <%= f.label "Ваше имя", class: "col-md-2 control-label" %>
             <div class="col-md-10">
               <%= f.text_field :username, autofocus: true, class: "form-control" %>
             </div>
@@ -26,21 +27,21 @@
         </div>
 
         <div class="form-group">
-            <%= f.label :password, class: "col-md-2 control-label" %>
+            <%= f.label "Пароль", class: "col-md-2 control-label" %>
             <div class="col-md-10">
               <%= f.password_field :password, autocomplete: 'off',  class: "form-control" %>
             </div>
         </div>        
 
         <div class="form-group">
-            <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
+            <%= f.label "Повторите пароль", class: "col-md-2 control-label" %>
             <div class="col-md-10">
               <%= f.password_field :password_confirmation, autocomplete: 'off',  class: "form-control" %>
             </div>
         </div>    
-      <%= f.submit "Create my account", class: "btn btn-success btn-lg" %>
-
       </fieldset>
+
+      <%= f.submit "Создать аккаунт", class: "btn btn-success" %>
       <%= render "devise/shared/links" %>
     <% end %>
   </div>

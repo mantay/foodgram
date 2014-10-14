@@ -3,13 +3,20 @@
   position: relative;
 }
 .margin-top-fix {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 /* END THEME FIXS */
 
 /* ADDITIONAL OPTIONS */
 .center {
   text-align: center;
+}
+.right-align {
+  text-align: right;
+}
+.btn-delete-float {
+  float: right;
+  margin-left: 15px;
 }
 .debug_dump {
   clear: both;
@@ -27,6 +34,13 @@
   background-color: #f2dede;
   border-color: #eed3d7;
   color: #b94a48;
+}
+.log-in-with {
+  top: 0;
+  left: 165px;
+  li {
+    height: 25px; 
+  }
 }
 /* END ADDITIONAL OPTIONS */
 
@@ -57,3 +71,19 @@ footer {
   color: red;
 }
 /* END ERROR REGISTER */
+
+/* USERS LIST */
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 5px;
+    margin-top: 10px;
+    border: 1px solid #e2e2e2;
+    &:last-child {
+      border-bottom: 1px solid #e2e2e2;
+    }
+  }
+}
+/* END USERS LIST */

@@ -15,8 +15,6 @@ describe "Static pages" do
     visit root_path
 
     click_link "Зарегистрироваться сейчас!"
-    expect(page).to have_title("Sign up")
-    click_link "Sign in"
-    expect(page).to have_title("Sign in")
+    expect(page).to have_title("Регистрация")
   end
 end
