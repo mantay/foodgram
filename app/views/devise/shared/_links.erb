@@ -19,7 +19,7 @@
   </p>
 <% end -%>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+<%- if devise_mapping.registerable? && controller_name != "registrations" %>
   <p>
     <%= link_to "Регистрация", new_registration_path(resource_name) %><br />
   </p>

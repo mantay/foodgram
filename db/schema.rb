@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141003192322) do
+ActiveRecord::Schema.define(version: 20141015192415) do
+
+  create_table "comments", force: true do |t|
+    t.string   "text"
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["post_id", "user_id"], name: "index_comments_on_post_id_and_user_id"
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "identities", force: true do |t|
     t.integer  "user_id"
@@ -22,6 +34,31 @@ ActiveRecord::Schema.define(version: 20141003192322) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
+  create_table "likes", force: true do |t|
+    t.integer  "post_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "likes", ["post_id", "user_id"], name: "index_likes_on_post_id_and_user_id", unique: true
+  add_index "likes", ["post_id"], name: "index_likes_on_post_id"
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id"
+
+  create_table "posts", force: true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "likes_count"
+  end
+
+  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -35,6 +72,10 @@ ActiveRecord::Schema.define(version: 20141003192322) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-md-7 center image-full">
+    <%= image_tag(@post.image.url(:medium)) %> 
+  </div>
+  <div class="col-md-5 image-full">
+      <%= image_tag @user.avatar.url(:small), class: "image-border" %>
+      <div class="pull-text">
+        <p class="post-user-name"><%= link_to @user.username, @user %></p>
+        <p>Опубликовано <%= time_ago_in_words(@post.created_at) %> назад</p>
+      </div>
+      <div class="post-comments">
+        <h4>Комментарии</h4>
+          
+          <% unless @post.content.empty? %>
+            <div class="block">
+              <%= image_tag @user.avatar.url(:small), class: "image-border image-comment" %>
+              <div class="pull-text">
+                <p class="post-user-name">
+                  <%= link_to @user.username, @user %>
+                  <% if current_user == @post.user %>
+                    <%= link_to "удалить запись", @post, method: :delete, 
+                                                    data: { confirm: "Вы уверены?" },
+                                                    class: "text-danger small" %>
+                  <% end %>   
+                </p>             
+                <p><%= @post.content %></p>
+              </div>
+              </p>
+            </div>
+          <% else %>
+            <% if current_user == @post.user %>
+              <%= link_to "удалить запись", @post, method: :delete, 
+                                                   data: { confirm: "Вы уверены?" },
+                                                   class: "text-danger small" %>
+            <% end %>
+          <% end %>
+
+          <% @post.comments.each do |comment| %>
+            <div class="block">
+              <% unless comment.user.nil? %>
+                <%= image_tag comment.user.avatar.url(:small), class: "image-border image-comment" %>
+                <div class="pull-text">
+                  <p class="post-user-name">
+                    <%= link_to comment.user.username, comment.user %>
+                    <% if current_user == comment.user %>
+                      <%= link_to "удалить", comment, method: :delete, 
+                                                      data: { confirm: "Вы уверены?" },
+                                                      class: "text-danger small" %>
+                    <% end %>
+                  </p>
+                  <p><%= comment.text %></p>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="col-md-4 col-padding-fix">
+            <% if current_user.likes.find_by(post_id: @post.id).nil? %>
+              <%= form_for(@like) do |f| %>
+                <%= f.hidden_field :post_id, {value: @post.id } %>
+                <div class="btn-group margin-top-fix">
+                  <a href="" class="btn btn-default">
+                    <%= @post.likes.count %>
+                  </a>
+                  <%= f.submit "Нравится", class: "btn" %>
+                </div>
+              <% end %>
+            <% else %>
+               <%= form_for(current_user.likes.find_by(post_id: @post.id), html: { method: :delete }) do |f| %>
+                <%= f.hidden_field :post_id, {value: @post.id } %>
+                <div class="btn-group margin-top-fix">
+                  <a href="" class="btn btn-danger">
+                    <%= @post.likes.count %>
+                  </a>
+                  <%= f.submit "Не нравится", class: "btn" %>
+                </div>
+              <% end %>         
+            <% end %>
+          </div>
+
+          <div class="col-md-8">
+            <%= form_for(@comment, html: { class: "form-horizontal margin-top-fix" }) do |f| %>
+              <%= render 'shared/error_messages', object: f.object %>
+              <div class="form-group">
+                <div class="input-group">
+                  <%= f.text_field :text, autofocus: true, placeholder: "Ваш комментарий", class: "form-control" %>
+                  <span class="input-group-btn">
+                    <%= f.hidden_field :post_id, {value: @post.id } %>
+                    <%= f.submit "Отправить", class: "btn btn-success" %>
+                  </span>
+                </div>
+              </div>
+            <% end %>
+          </div>
+      </div>
+  </div>
+</div>

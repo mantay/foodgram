@@ -6,13 +6,12 @@
           <li>
             <%= link_to "Главная", root_path %>
           </li>
-          <li>
-            <%= link_to "Помощь", '#' %>
-          </li>
           <% if user_signed_in? %>
             <li>
-              <%= link_to 'Пользователи', users_path %>
+              <%= link_to "Пользователи", users_path %>
             </li>
+            <li>
+              <%= link_to "Самое популярное", image_rating_path %>
             <li class="fat-menu dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.username %> <b class="caret"></b>

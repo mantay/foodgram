@@ -4,13 +4,7 @@
   <h1>Привязать к профилю</h1>
   <div class="col-md-6 col-md-offset-3">
   <%= form_for(:user, controller: 'users', action: 'combine_profiles', url: combine_profiles_path, method: 'patch', html: { class: "form-horizontal margin-top-fix" }) do |f| %>
-      <div class="row">
-        <div class="col-md-offset-2 col-md-10">
-          <%= render('shared/error_messages') %>
-        </div>
-      </div>
       <fieldset>
-
         <div class="form-group">
             <%= f.label :email, class: "col-md-2 control-label" %>
             <div class="col-md-10">

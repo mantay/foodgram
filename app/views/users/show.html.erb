@@ -1,10 +1,14 @@
 <% provide(:title, @user.username) %>
 
-<div class="row">
+<div class="row user-header">
   <div class="col-md-2">
-    <img class="img-thumbnail" src="http://lorempixel.com/100/100/">    
+  <% unless @user.avatar_file_name.nil? %>
+      <li class="img-thumbnail"><%= image_tag(@user.avatar.url(:medium)) %></li>
+    <% else %>
+      <li class="img-thumbnail"><%= image_tag("missing.jpg") %></li>
+  <% end %>   
   </div>
-  <div class="col-md-10">
+  <div class="col-md-7">
     <h1>
       <%= @user.username %>
     </h1>
@@ -12,4 +16,36 @@
       <%= @user.email %>
     </p>
   </div>
+  <div class="col-md-3">
+    <div class="btn-group stat-group">
+      <%= link_to "Добавить фото", posts_path, class: "btn btn-success" %>
+      <span href="#" class="btn btn-default"><%= @user.posts.count %> фото</span>
+    </div>
+  </div>
 </div>
+
+<% if @user.posts.any? %>
+  <div class="row content-wrapper-posts">
+    <% @user.posts.order("created_at DESC").each do |user_post| %>
+      <div class="col-md-3">
+        <div class="post-bg center">
+          <div class="post-date">
+               <%= user_post.created_at.strftime("%d %b. %Y %H:%M") %>
+          </div>
+          <%= link_to image_tag(user_post.image.url(:small)), post_path(user_post.id.to_s) %> 
+          <div class="post-info">
+            <span class="post-info-likes">
+              <span class="glyphicon glyphicon-heart"></span>
+              <%= user_post.likes.count %>
+            </span>
+            <span class="post-info-comments">
+              <span class="glyphicon glyphicon-comment"></span>
+              <%= user_post.comments.count %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <%= will_paginate @posts %>
+<% end %>

@@ -1,12 +1,16 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_attached_file :avatar, :styles => { :medium => "100x100#", :small => "50x50#" }
+  has_many :identity
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
   validates :username, presence: true, length: { minimum: 3, maximum: 50 }
+  validates_attachment_content_type :avatar, :content_type => /^image\/(jpg|jpeg|png)$/, :message => 'file type is not allowed (only jpeg/png images)'
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable
-
-  has_many :identity
 
   TEMP_EMAIL_REGEX = /not@verified.com/
 
@@ -34,6 +38,7 @@ class User < ActiveRecord::Base
     end
 
     user
+
   end
 
   def email_verified?

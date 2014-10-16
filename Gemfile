@@ -39,6 +39,8 @@ gem 'omniauth-instagram'
 
 gem 'faker'
 
+gem 'paperclip'
+
 group :production do 
   gem 'pg'
   gem 'rails_12factor'

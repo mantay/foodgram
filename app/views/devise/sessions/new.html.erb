@@ -1,16 +1,14 @@
 <% provide(:title, 'Войти') %>
 <div class="row center">
   <h1>Войти</h1>
-
   <div class="col-md-6 col-md-offset-3">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => { :class => "form-horizontal margin-top-fix" }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal margin-top-fix" }) do |f| %>
       <div class="row">
         <div class="col-md-offset-2 col-md-10">
-          <%= render('shared/error_messages') %>
+          <%= render "shared/error_messages", object: f.object %>
         </div>
       </div>
       <fieldset>
-
         <div class="form-group">
             <%= f.label :email, class: "col-md-2 control-label" %>
             <div class="col-md-10">
@@ -25,10 +23,8 @@
             </div>
         </div>        
       </fieldset>
-
       <%= f.submit "Войти", class: "btn btn-success" %>
       <%= render "devise/shared/links" %>
-
     <% end %>
   </div>
 </div>

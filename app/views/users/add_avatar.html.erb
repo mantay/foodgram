@@ -1,0 +1,17 @@
+<%= render('layouts/aside_menu') %>
+<div class="col-md-6">
+  <h3>Изменить изображение аватара</h3>
+  <div class="col-md-3 col-md-offset-1">
+    <% unless current_user.avatar_file_name.nil? %>
+        <li class="img-thumbnail"><%= image_tag(current_user.avatar.url(:medium)) %></li>
+    <% else %>
+      <li class="img-thumbnail"><%= image_tag("missing.jpg") %></li>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <%= form_for(:user, controller: 'users', action: 'combine_profiles', html: { multipart: true }) do |f| %>
+      <%= f.file_field :avatar %>
+      <%= f.submit "Изменить фотографию", class: "btn btn-sm btn-success margin-top-fix" %>
+    <% end %>
+  </div>
+</div>

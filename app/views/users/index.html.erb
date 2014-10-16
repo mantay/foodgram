@@ -8,7 +8,11 @@
     <% @users.each do |user| %>
       <div class="col-md-3">
         <li>
-          <img class="img-thumbnail users-profile-image" src="http://lorempixel.com/50/50/"> 
+        <% unless user.avatar_file_name.nil? %>
+          <%= image_tag(user.avatar.url(:small), class: "img-thumbnail") %>
+        <% else %>
+          <%= image_tag("missing.jpg", class: "img-thumbnail missing") %>
+        <% end %>
           <%= link_to user.username, user %>
         </li>
       </div>

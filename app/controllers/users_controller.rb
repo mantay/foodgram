@@ -2,11 +2,22 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
+    if signed_in? 
+      @post = current_user.posts.build
+    end
   end
-
  
   def index
     @users = User.paginate(page: params[:page])
+  end
+
+  def add_avatar
+    if request.post? && params['user']
+      current_user.update_attributes(avatar: params['user']['avatar'])
+    else
+      flash.now[:warning] = "Загрузите изображение" if request.post? 
+    end
   end
 
   def finish_signup
@@ -49,4 +60,5 @@ class UsersController < ApplicationController
       current_user.destroy
       sign_in @user
     end
+
 end

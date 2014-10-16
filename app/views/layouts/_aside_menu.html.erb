@@ -2,6 +2,7 @@
   <h2>Настройки</h2>
   <ul class="nav nav-pills nav-stacked">
     <%= nav_link "Редактировать профиль", edit_user_registration_path %>
+    <%= nav_link "Изображение аватара", add_avatar_path(current_user.id) %>
     <%= nav_link "Объединить профили", merge_profiles_path(current_user.id) %>
   </ul>
 </div>

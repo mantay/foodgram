@@ -1,16 +1,16 @@
-<%= render('shared/error_messages') %>
 <div id="add-email" class="container">
-  <%= form_for(current_user, :as => 'user', :url => finish_signup_path(current_user), :html => { role: 'form'}) do |f| %>
+  <%= form_for(current_user, as: 'user', url: finish_signup_path(current_user), html: { role: 'form'}) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div class="form-group">
       <%= f.label :email %>
       <div class="controls">
-        <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
+        <%= f.text_field :email, autofocus: true, value: '', class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
         <p class="help-block">Укажите свой почтовый адрес.</p>
       </div>
     </div>
     <div class="actions">
-      <%= f.submit 'Продолжить', :class => 'btn btn-success' %>
-      <%= f.button 'Интегрировать с уже существующим', :class => 'btn btn-primary', :formaction => combine_profiles_path %>
+      <%= f.submit 'Продолжить', class: 'btn btn-success' %>
+      <%= f.button 'Интегрировать с уже существующим', class: 'btn btn-primary', formaction: combine_profiles_path %>
     </div>
   <% end %>
 </div>

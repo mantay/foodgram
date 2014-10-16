@@ -1,0 +1,31 @@
+<% provide(:title, "Загрузить изображение") %>
+
+<div class="row center">
+  <h1>Добавить фото</h1>
+  <div class="col-md-6 col-md-offset-3">
+  <%= form_for(@post, html: { class: "form-horizontal margin-top-fix" }) do |f| %>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-10">
+          <%= render 'shared/error_messages', object: f.object %>
+        </div>
+      </div>
+      <fieldset>
+        <div class="form-group">
+            <%= f.label "Комментарий", class: "col-md-2 control-label" %>
+            <div class="col-md-10">
+              <%= f.text_area :content, autofocus: true, class: "form-control" %>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label "Добавить", class: "col-md-2 control label" %>
+          <div class="col-md-10">
+            <%= f.file_field :image %>
+          </div>
+        </div>
+      </fieldset>
+      <%= f.submit "Добавить пост", class: "btn btn-success" %>
+      <%= link_to "Назад", :back, class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>

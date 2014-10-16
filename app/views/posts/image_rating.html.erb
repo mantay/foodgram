@@ -1,0 +1,30 @@
+<% provide(:title, "Самое популярное") %>
+
+<% if @images.any? %>
+  <div class="row content-wrapper-posts">
+    <% @images.order("likes_count DESC").each do |user_post| %>
+      <div class="col-md-3">
+        <div class="post-bg center">
+          <div class="post-date">
+               <%= user_post.created_at.strftime("%d %b. %Y %H:%M") %>
+          </div>
+          <%= link_to image_tag(user_post.image.url(:small)), post_path(user_post.id.to_s) %> 
+          <div class="post-info">
+            <span class="post-info-likes">
+              <span class="glyphicon glyphicon-heart"></span>
+              <%= user_post.likes.count %>
+            </span>
+            <span class="post-info-comments">
+              <span class="glyphicon glyphicon-comment"></span>
+              <%= user_post.comments.count %>
+            </span>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+<div class="row center">
+  <h1>Еще нет ни одного изображения :(</h1>
+</div>
+<% end %>

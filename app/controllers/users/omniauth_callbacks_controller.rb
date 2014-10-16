@@ -20,8 +20,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     providers_callback_for provider
   end
 
-
-
   def after_sign_in_path_for(resources)
     if resources.email_verified?
       super resources
