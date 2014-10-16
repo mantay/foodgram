@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :content
       t.integer :user_id
       t.attachment :image
+      t.integer :likes_count, default: 0, null: false
 
       t.timestamps
     end
